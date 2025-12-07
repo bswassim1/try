@@ -1,6 +1,4 @@
 // ===== CONFIGURATION & DATA =====
-// EDIT THESE SECTIONS TO CUSTOMIZE FOR YOUR GIRLFRIEND
-
 const storyData = [
     {
         message: "When we first met, I knew something magical was happening. 💫",
@@ -12,7 +10,6 @@ const storyData = [
             { text: "June 19, 2024", correct: false }
         ],
         wrongMessage: "baka baka ghaleet ye bagra",
-        // Special message that shows after correct answer to first question
         specialMessage: "first meet after 9 months bac yas\n\nedheka nhar ma najamch hata ntaadeeh khatro nhar edheka eli ena hasit rohy ma narafch kifeh ntsaref w kifeh noghzer wala nehki ... awel ma chofteek kalbi rjaa ydouk lik enty amal just khater choftek baad 9 chhor wakteli ena kont mhadher rohy , khater kont aref bch nchofek fl nhar edheka amaa w hata kif khrajto bl karhba ma khou yas kont habeb no3redhkom just bch nawed nchofek khater maa chbateech biik , w ey meli choftek fi dar yas eli amalto fi 9 chhor lkol taah fl mee w tlaat najamch nnsek bl sehel.. lila kemla w ena nkhamem fiik w najamtech nahik mn mokhi lin je nhar w bathtlk awel msg..."
     },
     {
@@ -90,93 +87,50 @@ loveMessageBtn.addEventListener('click', showLoveMessage);
 closePopupBtn.addEventListener('click', closeLoveMessage);
 confirmPopupBtn.addEventListener('click', closeLoveMessage);
 
-// Gallery story popup listeners
-document.getElementById('firstDayGallery').addEventListener('click', function() {
-    showGalleryStory(galleryStoryText);
+// Gallery event listeners
+document.getElementById('firstDayGallery').addEventListener('click', () => showGalleryStory(galleryStoryText));
+document.getElementById('ringNightGallery').addEventListener('click', () => showGalleryStory(ringNightStoryText));
+document.getElementById('youMeGallery').addEventListener('click', () => showGalleryStory(youMeStoryText));
+document.getElementById('preciousMomentsGallery').addEventListener('click', () => showGalleryStory(preciousMomentsStoryText));
+
+// Gallery popup close
+document.getElementById('closeGalleryStoryBtn').addEventListener('click', closeGalleryStory);
+document.getElementById('confirmGalleryStoryBtn').addEventListener('click', closeGalleryStory);
+document.getElementById('galleryStoryPopup').addEventListener('click', (e) => {
+    if (e.target.id === 'galleryStoryPopup') closeGalleryStory();
 });
 
-document.getElementById('ringNightGallery').addEventListener('click', function() {
-    showGalleryStory(ringNightStoryText);
-});
+// Video popup handlers
+setupVideoPopup('watchVideoBtn', 'videoPopup', 'videoPlayer');
+setupVideoPopup('watchRingNightBtn', 'ringNightVideoPopup', 'ringNightVideoPlayer');
+setupVideoPopup('watchOurNightBtn', 'ourNightVideoPopup', 'ourNightVideoPlayer');
+setupVideoPopup('lastThingBtn', 'lastThingVideoPopup', 'lastThingVideoPlayer');
 
-document.getElementById('youMeGallery').addEventListener('click', function() {
-    showGalleryStory(youMeStoryText);
-});
+function setupVideoPopup(btnId, popupId, videoId) {
+    const btn = document.getElementById(btnId);
+    const popup = document.getElementById(popupId);
+    const video = document.getElementById(videoId);
+    const closeBtn = popup.querySelector('.close-btn');
 
-document.getElementById('preciousMomentsGallery').addEventListener('click', function() {
-    showGalleryStory(preciousMomentsStoryText);
-});
+    if (btn) btn.addEventListener('click', () => {
+        popup.classList.remove('hidden');
+        video.play();
+    });
 
-document.getElementById('closeGalleryStoryBtn').addEventListener('click', function() {
-    closeGalleryStory();
-});
+    closeBtn.addEventListener('click', () => {
+        popup.classList.add('hidden');
+        video.pause();
+    });
 
-document.getElementById('confirmGalleryStoryBtn').addEventListener('click', function() {
-    closeGalleryStory();
-});
-
-document.getElementById('galleryStoryPopup').addEventListener('click', function(e) {
-    if (e.target === this) {
-        closeGalleryStory();
-    }
-});
-
-// Ring Night Video button listeners
-document.getElementById('watchRingNightBtn').addEventListener('click', function() {
-    document.getElementById('ringNightVideoPopup').classList.remove('hidden');
-    document.getElementById('ringNightVideoPlayer').play();
-});
-
-document.getElementById('closeRingNightVideoBtn').addEventListener('click', function() {
-    document.getElementById('ringNightVideoPopup').classList.add('hidden');
-    document.getElementById('ringNightVideoPlayer').pause();
-});
-
-document.getElementById('ringNightVideoPopup').addEventListener('click', function(e) {
-    if (e.target === this) {
-        document.getElementById('ringNightVideoPopup').classList.add('hidden');
-        document.getElementById('ringNightVideoPlayer').pause();
-    }
-});
-
-// Our Night Video button listeners
-document.getElementById('watchOurNightBtn').addEventListener('click', function() {
-    document.getElementById('ourNightVideoPopup').classList.remove('hidden');
-    document.getElementById('ourNightVideoPlayer').play();
-});
-
-document.getElementById('closeOurNightVideoBtn').addEventListener('click', function() {
-    document.getElementById('ourNightVideoPopup').classList.add('hidden');
-    document.getElementById('ourNightVideoPlayer').pause();
-});
-
-document.getElementById('ourNightVideoPopup').addEventListener('click', function(e) {
-    if (e.target === this) {
-        document.getElementById('ourNightVideoPopup').classList.add('hidden');
-        document.getElementById('ourNightVideoPlayer').pause();
-    }
-});
-
-// Last Thing Video button listeners
-document.getElementById('lastThingBtn').addEventListener('click', function() {
-    document.getElementById('lastThingVideoPopup').classList.remove('hidden');
-    document.getElementById('lastThingVideoPlayer').play();
-});
-
-document.getElementById('closeLastThingVideoBtn').addEventListener('click', function() {
-    document.getElementById('lastThingVideoPopup').classList.add('hidden');
-    document.getElementById('lastThingVideoPlayer').pause();
-});
-
-document.getElementById('lastThingVideoPopup').addEventListener('click', function(e) {
-    if (e.target === this) {
-        document.getElementById('lastThingVideoPopup').classList.add('hidden');
-        document.getElementById('lastThingVideoPlayer').pause();
-    }
-});
+    popup.addEventListener('click', (e) => {
+        if (e.target === popup) {
+            popup.classList.add('hidden');
+            video.pause();
+        }
+    });
+}
 
 // ===== MAIN FUNCTIONS =====
-
 function startExperience() {
     startScreen.classList.remove('active');
     storyScreen.classList.add('active');
@@ -209,10 +163,9 @@ function loadStoryChapter(stepIndex) {
     // Clear previous options and feedback
     optionsContainer.innerHTML = '';
     feedbackMessage.classList.add('hidden');
-    feedbackMessage.className = 'feedback-message hidden';
 
     // Create option buttons
-    chapter.options.forEach((option, index) => {
+    chapter.options.forEach((option) => {
         const btn = document.createElement('button');
         btn.className = 'btn btn-option';
         btn.textContent = option.text;
@@ -228,7 +181,6 @@ function handleAnswer(isCorrect, wrongMessage, specialMessage = null, stepIndex 
     const buttons = document.querySelectorAll('.btn-option');
 
     if (isCorrect) {
-        // Show correct feedback
         buttons.forEach(btn => {
             if (btn.textContent === event.target.textContent) {
                 btn.classList.add('correct');
@@ -242,19 +194,14 @@ function handleAnswer(isCorrect, wrongMessage, specialMessage = null, stepIndex 
         feedbackMessage.className = 'feedback-message correct';
         feedbackMessage.classList.remove('hidden');
 
-        // If there's a special message for this question, show it
-        if (specialMessage) {
-            setTimeout(() => {
+        setTimeout(() => {
+            if (specialMessage) {
                 showSpecialMessage(specialMessage, stepIndex);
-            }, 1500);
-        } else {
-            // Move to next chapter after delay
-            setTimeout(() => {
+            } else {
                 loadStoryChapter(currentStep + 1);
-            }, 1500);
-        }
+            }
+        }, 1500);
     } else {
-        // Show wrong feedback
         buttons.forEach(btn => {
             if (btn.textContent === event.target.textContent) {
                 btn.classList.add('incorrect');
@@ -265,17 +212,13 @@ function handleAnswer(isCorrect, wrongMessage, specialMessage = null, stepIndex 
         feedbackMessage.className = 'feedback-message wrong';
         feedbackMessage.classList.remove('hidden');
 
-        // Re-enable answer after a moment
         setTimeout(() => {
             isAnswered = false;
-            buttons.forEach(btn => {
-                btn.classList.remove('incorrect');
-            });
+            buttons.forEach(btn => btn.classList.remove('incorrect'));
         }, 1000);
     }
 }
 
-// New function to show special message popup
 function showSpecialMessage(message, stepIndex) {
     const popup = document.createElement('div');
     popup.className = 'special-message-popup';
@@ -289,35 +232,19 @@ function showSpecialMessage(message, stepIndex) {
 
     document.body.appendChild(popup);
 
-    // Close button functionality
-    popup.querySelector('.close-special-btn').addEventListener('click', function() {
+    const closeHandler = () => {
         popup.remove();
         loadStoryChapter(stepIndex + 1);
-    });
+    };
 
-    // Continue button functionality
-    popup.querySelector('.continue-btn').addEventListener('click', function() {
-        popup.remove();
-        loadStoryChapter(stepIndex + 1);
+    popup.querySelector('.close-special-btn').addEventListener('click', closeHandler);
+    popup.querySelector('.continue-btn').addEventListener('click', closeHandler);
+    popup.addEventListener('click', (e) => {
+        if (e.target === popup) closeHandler();
     });
-
-    // Close popup when clicking outside
-    popup.addEventListener('click', function(e) {
-        if (e.target === this) {
-            popup.remove();
-            loadStoryChapter(stepIndex + 1);
-        }
-    });
-}
-
-// Function to show the note screen
-function showNoteScreen() {
-    document.getElementById('storyScreen').classList.remove('active');
-    document.getElementById('noteScreen').classList.add('active');
 }
 
 // ===== FINAL SCREEN ANIMATIONS =====
-
 function createFloatingHearts() {
     const heartsContainer = document.querySelector('.hearts-container');
     const hearts = ['❤️', '💕', '💖', '💗', '💓'];
@@ -330,7 +257,6 @@ function createFloatingHearts() {
         heart.style.animation = `floatUp ${3 + Math.random() * 2}s ease-in forwards`;
 
         heartsContainer.appendChild(heart);
-
         setTimeout(() => heart.remove(), 5000);
     }, 500);
 }
@@ -347,19 +273,16 @@ function createConfetti() {
             confetti.style.animation = `confettiFall ${2 + Math.random() * 2}s ease-in forwards`;
 
             confettiContainer.appendChild(confetti);
-
             setTimeout(() => confetti.remove(), 4000);
         }
     }
 
-    // Spawn confetti bursts at intervals
     spawnConfetti();
     setTimeout(spawnConfetti, 1000);
     setTimeout(spawnConfetti, 2000);
 }
 
 // ===== POPUP FUNCTIONS =====
-
 function showLoveMessage() {
     loveMessageElement.textContent = loveMessage;
     loveMessagePopup.classList.remove('hidden');
@@ -369,56 +292,22 @@ function closeLoveMessage() {
     loveMessagePopup.classList.add('hidden');
 }
 
-// Close popup when clicking outside
 loveMessagePopup.addEventListener('click', (e) => {
-    if (e.target === loveMessagePopup) {
-        closeLoveMessage();
-    }
+    if (e.target === loveMessagePopup) closeLoveMessage();
 });
 
-document.getElementById('watchVideoBtn').addEventListener('click', function() {
-    document.getElementById('videoPopup').classList.remove('hidden');
-    document.getElementById('videoPlayer').play();
-});
-
-document.getElementById('closeVideoBtn').addEventListener('click', function() {
-    document.getElementById('videoPopup').classList.add('hidden');
-    document.getElementById('videoPlayer').pause();
-});
-
-// Close video popup when clicking outside the video container
-document.getElementById('videoPopup').addEventListener('click', function(e) {
-    if (e.target === this) {
-        document.getElementById('videoPopup').classList.add('hidden');
-        document.getElementById('videoPlayer').pause();
-    }
-});
-
-// ===== GALLERY STORY POPUP FUNCTIONS =====
-
+// ===== GALLERY STORY FUNCTIONS =====
 function showGalleryStory(storyText) {
     const popup = document.getElementById('galleryStoryPopup');
     const textElement = document.getElementById('galleryStoryText');
     const watchOurNightBtn = document.getElementById('watchOurNightBtn');
     const watchRingNightBtn = document.getElementById('watchRingNightBtn');
     
-    // Clear and set text properly
     textElement.textContent = storyText;
     popup.classList.remove('hidden');
     
-    // Show buttons based on which story is displayed
-    if (storyText === preciousMomentsStoryText) {
-        watchOurNightBtn.style.display = 'block';
-        watchRingNightBtn.style.display = 'none';
-    }
-    else if (storyText === ringNightStoryText) {
-        watchRingNightBtn.style.display = 'block';
-        watchOurNightBtn.style.display = 'none';
-    }
-    else {
-        watchOurNightBtn.style.display = 'none';
-        watchRingNightBtn.style.display = 'none';
-    }
+    watchOurNightBtn.style.display = (storyText === preciousMomentsStoryText) ? 'block' : 'none';
+    watchRingNightBtn.style.display = (storyText === ringNightStoryText) ? 'block' : 'none';
 }
 
 function closeGalleryStory() {

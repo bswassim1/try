@@ -9,186 +9,231 @@
     <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&display=swap" rel="stylesheet">
 </head>
 <body>
-    <!-- START SCREEN -->
-    <div id="startScreen" class="screen active">
-        <div class="start-container">
-            <h1 class="title">Happy Birthday my Amal 🎂</h1>
-            <p class="subtitle">To the girl who turns 22 today</p>
-            <p class="message">My angel, my queen, and the most beautiful part of my life.
+    <!-- LOGIN SCREEN - ONLY THIS VISIBLE FIRST -->
+    <div id="loginScreen" class="screen active">
+        <div class="login-container">
+            <div class="login-card">
+                <h1 class="login-title">✨ Welcome ✨</h1>
+                <p class="login-subtitle">This is a special message for someone I love</p>
+                
+                <form class="login-form" id="loginForm">
+                    <div class="form-group">
+                        <input 
+                            type="email" 
+                            id="emailInput" 
+                            class="login-input" 
+                            placeholder="Enter your email"
+                            required
+                        >
+                    </div>
+                    
+                    <div class="form-group">
+                        <input 
+                            type="password" 
+                            id="passwordInput" 
+                            class="login-input" 
+                            placeholder="Enter your password"
+                            required
+                        >
+                    </div>
+
+                    <div id="loginError" class="login-error hidden"></div>
+
+                    <button type="button" id="loginBtn" class="btn btn-primary login-btn">
+                        Login
+                    </button>
+                </form>
+
+                <p class="login-footer">🔒 This page is protected</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- MAIN CONTENT - HIDDEN UNTIL LOGIN -->
+    <div id="mainContent" class="main-content hidden">
+        <!-- START SCREEN -->
+        <div id="startScreen" class="screen active">
+            <div class="start-container">
+                <h1 class="title">Happy Birthday my Amal 🎂</h1>
+                <p class="subtitle">To the girl who turns 22 today</p>
+                <p class="message">My angel, my queen, and the most beautiful part of my life.
 I wish you a year full of love, peace, and everything your heart dreams of.
 I'm proud of you, and I love you more than words could ever say. ❤️</p>
-            <p class="message-small">I have something special prepared for you...Click below to begin our journey together ✨</p>
-            <button id="startBtn" class="btn btn-primary">Start</button>
+                <p class="message-small">I have something special prepared for you...Click below to begin our journey together ✨</p>
+                <button id="startBtn" class="btn btn-primary">Start</button>
+            </div>
         </div>
-    </div>
 
-    <!-- STORY CHAPTERS -->
-    <div id="storyScreen" class="screen">
-        <div class="story-container">
-            <div class="story-header">
-                <div class="progress-bar">
-                    <div id="progressFill" class="progress-fill"></div>
+        <!-- STORY CHAPTERS -->
+        <div id="storyScreen" class="screen">
+            <div class="story-container">
+                <div class="story-header">
+                    <div class="progress-bar">
+                        <div id="progressFill" class="progress-fill"></div>
+                    </div>
+                    <p id="progressText" class="progress-text">Step 1 of 4</p>
                 </div>
-                <p id="progressText" class="progress-text">Step 1 of 4</p>
-            </div>
 
-            <div class="story-content">
-                <p id="storyMessage" class="story-message"></p>
-                <p id="storyQuestion" class="story-question"></p>
+                <div class="story-content">
+                    <p id="storyMessage" class="story-message"></p>
+                    <p id="storyQuestion" class="story-question"></p>
 
-                <div id="optionsContainer" class="options-container"></div>
+                    <div id="optionsContainer" class="options-container"></div>
 
-                <div id="feedbackMessage" class="feedback-message hidden"></div>
-            </div>
-        </div>
-    </div>
-
-    <!-- SPECIAL NOTE SCREEN -->
-    <div id="noteScreen" class="screen">
-        <div class="note-container">
-            <!-- Decorative elements -->
-            <div class="note-decoration left"></div>
-            <div class="note-decoration right"></div>
-
-            <!-- The romantic note -->
-            <div class="note-paper">
-                <div class="note-content">
-                    <p class="note-text">✨ Before you move on, I have something special for you…</p>
-                    <p class="note-text">Every moment in this video feels like a small piece of heaven with you.</p>
-                    <p class="note-text">Your laugh, your eyes, your energy — they turn simple seconds into memories my heart will never forget.</p>
-                    <p class="note-text">With you, even the smallest moments feel magical.</p>
-                    <p class="note-text">Being with you makes every day brighter, every smile sweeter, every heartbeat stronger.</p>
-                    <p class="note-text">Enjoy, my love. ✨</p>
+                    <div id="feedbackMessage" class="feedback-message hidden"></div>
                 </div>
             </div>
-
-            <!-- Watch video button -->
-            <button id="watchVideoBtn" class="btn btn-primary note-btn">Watch the video</button>
         </div>
-    </div>
 
-    <!-- VIDEO POPUP -->
-    <div id="videoPopup" class="video-popup hidden">
-        <div class="video-container">
-            <button id="closeVideoBtn" class="close-btn">✕</button>
-            <h3 class="video-title">random funny us 🎥</h3>
-            <video id="videoPlayer" controls>
-                <source src="vd1.mp4" type="video/mp4">
-                Your browser does not support the video tag.
-            </video>
+        <!-- SPECIAL NOTE SCREEN -->
+        <div id="noteScreen" class="screen">
+            <div class="note-container">
+                <!-- Decorative elements -->
+                <div class="note-decoration left"></div>
+                <div class="note-decoration right"></div>
+
+                <!-- The romantic note -->
+                <div class="note-paper">
+                    <div class="note-content">
+                        <p class="note-text">✨ Before you move on, I have something special for you…</p>
+                        <p class="note-text">Every moment in this video feels like a small piece of heaven with you.</p>
+                        <p class="note-text">Your laugh, your eyes, your energy — they turn simple seconds into memories my heart will never forget.</p>
+                        <p class="note-text">With you, even the smallest moments feel magical.</p>
+                        <p class="note-text">Being with you makes every day brighter, every smile sweeter, every heartbeat stronger.</p>
+                        <p class="note-text">Enjoy, my love. ✨</p>
+                    </div>
+                </div>
+
+                <!-- Watch video button -->
+                <button id="watchVideoBtn" class="btn btn-primary note-btn">Watch the video</button>
+            </div>
         </div>
-    </div>
 
-    <!-- FINAL SURPRISE PAGE -->
-    <div id="finalScreen" class="screen">
-        <div class="final-container">
-            <!-- Confetti -->
-            <div id="confetti-container" class="confetti-container"></div>
-
-            <!-- Cake and Celebration -->
-            <div class="celebration-section">
-                <div class="hearts-container"></div>
-                
-                <h1 class="final-title">Happy Birthday ❤️</h1>
-                <p class="final-subtitle">To My Love</p>
-
-                <!-- 3D Cake Scene -->
-                <video id="cakeScene" autoplay loop muted>
-                    <source src="kiss.mp4" type="video/mp4">
+        <!-- VIDEO POPUP -->
+        <div id="videoPopup" class="video-popup hidden">
+            <div class="video-container">
+                <button id="closeVideoBtn" class="close-btn">✕</button>
+                <h3 class="video-title">random funny us 🎥</h3>
+                <video id="videoPlayer" controls>
+                    <source src="vd1.mp4" type="video/mp4">
                     Your browser does not support the video tag.
                 </video>
+            </div>
+        </div>
 
-                <p class="cake-message">You make every day sweeter 🌹</p>
+        <!-- FINAL SURPRISE PAGE -->
+        <div id="finalScreen" class="screen">
+            <div class="final-container">
+                <!-- Confetti -->
+                <div id="confetti-container" class="confetti-container"></div>
+
+                <!-- Cake and Celebration -->
+                <div class="celebration-section">
+                    <div class="hearts-container"></div>
+                    
+                    <h1 class="final-title">Happy Birthday ❤️</h1>
+                    <p class="final-subtitle">To My Love</p>
+
+                    <!-- 3D Cake Scene -->
+                    <video id="cakeScene" autoplay loop muted>
+                        <source src="kiss.mp4" type="video/mp4">
+                        Your browser does not support the video tag.
+                    </video>
+
+                    <p class="cake-message">You make every day sweeter 🌹</p>
+                </div>
+
+                <!-- Photo Gallery -->
+                <div class="gallery-section">
+                    <h2>Our Memories Together</h2>
+                    <div class="gallery">
+                        <div class="gallery-item" id="firstDayGallery">
+                            <img src="1.jpg" alt="Memory 1">
+                            <p>Our First Day</p>
+                        </div>
+                        <div class="gallery-item" id="ringNightGallery">
+                            <img src="ring.jpg" alt="Memory 2">
+                            <p>The night of the promising ring</p>
+                        </div>
+                        <div class="gallery-item" id="youMeGallery">
+                            <img src="youme.jpg" alt="Memory 3">
+                            <p>You & Me</p>
+                        </div>
+                        <div class="gallery-item" id="preciousMomentsGallery">
+                            <img src="ournight.jpg" alt="Memory 4">
+                            <p>Precious Moment</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Final Message Button -->
+                <button id="loveMessageBtn" class="btn btn-primary final-btn">One More Thing...</button>
             </div>
 
-            <!-- Photo Gallery -->
-            <div class="gallery-section">
-                <h2>Our Memories Together</h2>
-                <div class="gallery">
-                    <div class="gallery-item" id="firstDayGallery">
-                        <img src="1.jpg" alt="Memory 1">
-                        <p>Our First Day</p>
-                    </div>
-                    <div class="gallery-item" id="ringNightGallery">
-                        <img src="ring.jpg" alt="Memory 2">
-                        <p>The night of the promising ring</p>
-                    </div>
-                    <div class="gallery-item" id="youMeGallery">
-                        <img src="youme.jpg" alt="Memory 3">
-                        <p>You & Me</p>
-                    </div>
-                    <div class="gallery-item" id="preciousMomentsGallery">
-                        <img src="ournight.jpg" alt="Memory 4">
-                        <p>Precious Moment</p>
-                    </div>
+            <!-- Gallery Story Popup -->
+            <div id="galleryStoryPopup" class="gallery-story-popup hidden">
+                <div class="gallery-story-content">
+                    <button id="closeGalleryStoryBtn" class="close-btn">✕</button>
+                    <p id="galleryStoryText" class="gallery-story-text"></p>
+                    <button id="watchRingNightBtn" class="btn btn-primary" style="display: none; margin-top: 20px;">Watch the Ring Night 💍</button>
+                    <button id="watchOurNightBtn" class="btn btn-primary" style="display: none; margin-top: 20px;">watch my fav night ✨</button>
+                    <button id="confirmGalleryStoryBtn" class="btn btn-primary">Close ❤️</button>
                 </div>
             </div>
 
-            <!-- Final Message Button -->
-            <button id="loveMessageBtn" class="btn btn-primary final-btn">One More Thing...</button>
-        </div>
-
-        <!-- Gallery Story Popup -->
-        <div id="galleryStoryPopup" class="gallery-story-popup hidden">
-            <div class="gallery-story-content">
-                <button id="closeGalleryStoryBtn" class="close-btn">✕</button>
-                <p id="galleryStoryText" class="gallery-story-text"></p>
-                <button id="watchRingNightBtn" class="btn btn-primary" style="display: none; margin-top: 20px;">Watch the Ring Night 💍</button>
-                <button id="watchOurNightBtn" class="btn btn-primary" style="display: none; margin-top: 20px;">watch my fav night ✨</button>
-                <button id="confirmGalleryStoryBtn" class="btn btn-primary">Close ❤️</button>
+            <!-- Ring Night Video Popup -->
+            <div id="ringNightVideoPopup" class="video-popup hidden">
+                <div class="video-container">
+                    <button id="closeRingNightVideoBtn" class="close-btn">✕</button>
+                    <h3 class="video-title">The Ring Night 💍✨</h3>
+                    <video id="ringNightVideoPlayer" controls>
+                        <source src="ring.mp4" type="video/mp4">
+                        Your browser does not support the video tag.
+                    </video>
+                </div>
             </div>
-        </div>
 
-        <!-- Ring Night Video Popup -->
-        <div id="ringNightVideoPopup" class="video-popup hidden">
-            <div class="video-container">
-                <button id="closeRingNightVideoBtn" class="close-btn">✕</button>
-                <h3 class="video-title">The Ring Night 💍✨</h3>
-                <video id="ringNightVideoPlayer" controls>
-                    <source src="ring.mp4" type="video/mp4">
-                    Your browser does not support the video tag.
-                </video>
+            <!-- Our Night Video Popup -->
+            <div id="ourNightVideoPopup" class="video-popup hidden">
+                <div class="video-container">
+                    <button id="closeOurNightVideoBtn" class="close-btn">✕</button>
+                    <h3 class="video-title">Our Night 💍✨</h3>
+                    <video id="ourNightVideoPlayer" controls>
+                        <source src="ournight.mp4" type="video/mp4">
+                        Your browser does not support the video tag.
+                    </video>
+                </div>
             </div>
-        </div>
 
-        <!-- Our Night Video Popup -->
-        <div id="ourNightVideoPopup" class="video-popup hidden">
-            <div class="video-container">
-                <button id="closeOurNightVideoBtn" class="close-btn">✕</button>
-                <h3 class="video-title">Our Night 💍✨</h3>
-                <video id="ourNightVideoPlayer" controls>
-                    <source src="ournight.mp4" type="video/mp4">
-                    Your browser does not support the video tag.
-                </video>
+            <!-- Love Message Popup -->
+            <div id="loveMessagePopup" class="popup hidden">
+                <div class="popup-content">
+                    <button id="closePopupBtn" class="close-btn">✕</button>
+                    <h2>A Message For You 💕</h2>
+                    <p id="loveMessage" class="love-message-text"></p>
+                    <button id="lastThingBtn" class="btn btn-primary" style="margin-top: 20px;">Last Thing For You ✨</button>
+                    <button id="confirmPopupBtn" class="btn btn-primary">I Love You Too ❤️</button>
+                </div>
             </div>
-        </div>
 
-        <!-- Love Message Popup -->
-        <div id="loveMessagePopup" class="popup hidden">
-            <div class="popup-content">
-                <button id="closePopupBtn" class="close-btn">✕</button>
-                <h2>A Message For You 💕</h2>
-                <p id="loveMessage" class="love-message-text"></p>
-                <button id="lastThingBtn" class="btn btn-primary" style="margin-top: 20px;">Last Thing For You ✨</button>
-                <button id="confirmPopupBtn" class="btn btn-primary">I Love You Too ❤️</button>
-            </div>
-        </div>
-
-        <!-- Last Thing Video Popup -->
-        <div id="lastThingVideoPopup" class="video-popup hidden">
-            <div class="video-container">
-                <button id="closeLastThingVideoBtn" class="close-btn">✕</button>
-                <h3 class="video-title">Last Thing For You 💕✨</h3>
-                <video id="lastThingVideoPlayer" controls>
-                    <source src="last.mp4" type="video/mp4">
-                    Your browser does not support the video tag.
-                </video>
+            <!-- Last Thing Video Popup -->
+            <div id="lastThingVideoPopup" class="video-popup hidden">
+                <div class="video-container">
+                    <button id="closeLastThingVideoBtn" class="close-btn">✕</button>
+                    <h3 class="video-title">Last Thing For You 💕✨</h3>
+                    <video id="lastThingVideoPlayer" controls>
+                        <source src="last.mp4" type="video/mp4">
+                        Your browser does not support the video tag.
+                    </video>
+                </div>
             </div>
         </div>
     </div>
 
     <!-- Three.js Library -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <script src="config.js"></script>
+    <script src="login.js"></script>
     <script src="script.js"></script>
 </body>
 </html>
