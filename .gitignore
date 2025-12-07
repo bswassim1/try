@@ -30,6 +30,3 @@ dist/
 build/
 .env
 .env.local
-
-# Credentials
-config.js
